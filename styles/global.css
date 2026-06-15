@@ -17,6 +17,7 @@
   --cc-white:       #F7F4ED;
   --cc-muted:       rgba(247,244,237,0.5);
   --cc-faint:       rgba(247,244,237,0.15);
+  --cc-body:        rgba(247,244,237,0.82);   /* long-form reading text */
 
   --cc-nav:          rgba(10,10,8,0.72);
   --cc-nav-scrolled: rgba(10,10,8,0.90);
@@ -49,6 +50,7 @@
   --cc-white:       #211C12;   /* body text (now dark) */
   --cc-muted:       rgba(33,28,18,0.60);
   --cc-faint:       rgba(33,28,18,0.34);
+  --cc-body:        rgba(33,28,18,0.82);   /* long-form reading text (dark on light) */
 
   --cc-nav:          rgba(244,240,230,0.78);
   --cc-nav-scrolled: rgba(244,240,230,0.92);
