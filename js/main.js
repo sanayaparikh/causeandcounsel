@@ -180,7 +180,12 @@
     return s.charAt(0).toUpperCase() + s.slice(1);
   }
 
-  // Build { subject, message, reply_to, from_name } from a form's fields.
+  // Where form submissions are emailed. This only takes effect if the
+  // EmailJS template's "To Email" field is set to {{to_email}} (otherwise
+  // EmailJS uses whatever address is hardcoded in the template).
+  var TO_EMAIL = 'parikhsanaya1@gmail.com';
+
+  // Build { subject, message, reply_to, from_name, to_email } from a form's fields.
   function composeEmail(form) {
     var formName = form.getAttribute('data-cc-label') || 'Website form';
     var data = new FormData(form);
@@ -198,7 +203,7 @@
     var subject = formName + (primaryName ? ' — ' + primaryName : '');
     var message = 'New "' + formName + '" submission from the Cause & Counsel website.\n\n' +
       lines.join('\n') + '\n\n— Sent automatically from causeandcounsel.in';
-    return { subject: subject, message: message, reply_to: email || 'no-reply@causeandcounsel.in', from_name: primaryName || 'Cause & Counsel Website', form_name: formName };
+    return { subject: subject, message: message, reply_to: email || 'no-reply@causeandcounsel.in', from_name: primaryName || 'Cause & Counsel Website', form_name: formName, to_email: TO_EMAIL };
   }
 
   function initForms() {
