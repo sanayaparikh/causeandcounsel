@@ -19,7 +19,7 @@
 .article-rule { width: 100%; height: 1px; background: linear-gradient(90deg, var(--cc-gold), transparent 55%); margin: 2.5rem 0; }
 
 .article-layout { display: grid; grid-template-columns: 1fr minmax(0, 680px) 1fr; gap: 2rem; }
-.toc { position: sticky; top: calc(var(--nav-h) + 2rem); align-self: start; font-size: 0.82rem; max-height: calc(100vh - var(--nav-h) - 4rem); overflow: auto; }
+.toc { grid-column: 1; position: sticky; top: calc(var(--nav-h) + 2rem); align-self: start; font-size: 0.82rem; max-height: calc(100vh - var(--nav-h) - 4rem); overflow: auto; }
 .toc h4 { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cc-faint); margin-bottom: 1rem; }
 .toc a { display: block; color: var(--cc-muted); padding: 0.35rem 0; border-left: 1px solid var(--cc-border); padding-left: 1rem; transition: color .2s var(--ease), border-color .2s var(--ease); }
 .toc a:hover { color: var(--cc-white); }
@@ -27,7 +27,8 @@
 .toc a.active { color: var(--cc-gold); border-color: var(--cc-gold); }
 
 /* Article body typography */
-.article-body { min-width: 0; }
+/* Always sit in the centre column, even when there's no TOC. */
+.article-body { min-width: 0; grid-column: 2; }
 .article-body > * { margin-bottom: 1.5rem; }
 .article-body p { font-size: 1.08rem; line-height: 1.8; color: var(--cc-body); }
 .article-body h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; line-height: 1.2; margin-top: 3rem; scroll-margin-top: calc(var(--nav-h) + 1.5rem); }
@@ -67,6 +68,7 @@
 @media (max-width: 1040px) {
   .article-layout { grid-template-columns: 1fr; }
   .toc { display: none; }
+  .article-body { grid-column: auto; }
 }
 @media (max-width: 640px) { .related-grid { grid-template-columns: 1fr; } }
 </style>
