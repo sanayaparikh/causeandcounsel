@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cause &amp; Counsel — The law belongs to everyone</title>
+<meta name="description" content="Cause &amp; Counsel bridges the gap between complex legal language and everyday people — demystifying rights, breaking down legislation, and making the law a tool for everyone." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/global.css" />
+<script>(function(){try{var t=localStorage.getItem('cc-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}document.documentElement.classList.add('js');})();</script>
+<style>
+/* ---- HOME-SPECIFIC ---- */
+.hero { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: var(--nav-h); position: relative; overflow: hidden; }
+.hero-glow { position: absolute; top: -20%; right: -10%; width: 60vw; height: 60vw; max-width: 720px; max-height: 720px; background: radial-gradient(circle, var(--cc-glow), transparent 62%); pointer-events: none; filter: blur(8px); }
+.hero-inner { position: relative; z-index: 2; padding-top: 4rem; padding-bottom: 4rem; }
+.hero h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(2.9rem, 8vw, 6.4rem); line-height: 1.02; letter-spacing: -0.02em; max-width: 16ch; text-wrap: balance; }
+.hero h1 em { font-style: italic; color: var(--cc-gold); }
+.hero .hero-sub { margin-top: 2rem; max-width: 44ch; font-size: clamp(1.05rem, 1.7vw, 1.25rem); color: var(--cc-muted); line-height: 1.65; }
+.hero-ctas { margin-top: 2.6rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-meta { position: absolute; bottom: 2.2rem; left: 0; right: 0; }
+.hero-meta .wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+.hero-est { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.16em; color: var(--cc-faint); text-transform: uppercase; }
+.hero-scroll { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.2em; color: var(--cc-muted); text-transform: uppercase; display: flex; align-items: center; gap: 0.6rem; }
+.hero-scroll .bar { display: inline-block; width: 1px; height: 36px; background: linear-gradient(var(--cc-gold), transparent); }
+.hero .section-tag, .hero h1, .hero .hero-sub, .hero-ctas, .hero-est, .hero-scroll { opacity: 1; }
+.js .hero .section-tag, .js .hero h1, .js .hero .hero-sub, .js .hero-ctas, .js .hero-est, .js .hero-scroll { transform: translateY(24px); transition: transform .9s var(--ease); }
+.js .hero.in .section-tag, .js .hero.in h1, .js .hero.in .hero-sub, .js .hero.in .hero-ctas, .js .hero.in .hero-est, .js .hero.in .hero-scroll { transform: none; }
+.js .hero.in h1 { transition-delay: .05s; }
+.js .hero.in .hero-sub { transition-delay: .2s; }
+.js .hero.in .hero-ctas { transition-delay: .35s; }
+.js .hero.in .hero-est, .js .hero.in .hero-scroll { transition-delay: .5s; }
+@media (prefers-reduced-motion: reduce) {
+  .js .hero .section-tag, .js .hero h1, .js .hero .hero-sub, .js .hero-ctas, .js .hero-est, .js .hero-scroll { transform: none; transition: none; }
+}
+
+/* About bento */
+.about-bento { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(2rem, 4vw, 4rem); align-items: stretch; }
+.about-story { display: flex; flex-direction: column; }
+.about-quote { font-family: var(--font-display); font-style: italic; font-size: clamp(1.5rem, 2.6vw, 2rem); line-height: 1.35; color: var(--cc-white); margin-bottom: 2rem; text-wrap: pretty; }
+.about-quote .mark { color: var(--cc-gold); }
+.about-body p { color: var(--cc-muted); margin-bottom: 1.1rem; font-size: 0.98rem; }
+.about-body p strong { color: var(--cc-white); font-weight: 500; }
+.about-sign { margin-top: 1.4rem; font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; color: var(--cc-gold); }
+.about-sign span { color: var(--cc-faint); }
+.about-pillars { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 1rem; }
+.about-pillars .card { padding: 1.5rem; }
+
+/* Goals bento — uses global .bento + .b-* classes */
+.goals-bento { margin-top: 3.5rem; }
+.goals-bento .b-2x2 { justify-content: space-between; }
+.goals-bento .b-2x2 .card-num { font-size: 0.8rem; }
+.goals-bento .b-2x2 .card-title { margin-top: 0.5rem; }
+.goals-bento .feature-foot { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cc-faint); margin-top: 1.5rem; }
+.goals-bento .b-full .card { flex-direction: row; align-items: center; gap: 2rem; }
+.goals-bento .b-full .gf-left { flex-shrink: 0; max-width: 30%; }
+.goals-bento .b-full .gf-left .card-title { margin-bottom: 0; }
+.goals-bento .b-full .gf-body { color: var(--cc-muted); font-size: 0.96rem; line-height: 1.6; max-width: 56ch; }
+
+/* Blog preview */
+.blog-feature { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; border: 1px solid var(--cc-border); border-radius: 4px; overflow: hidden; box-shadow: var(--cc-shadow); transition: border-color .3s var(--ease), box-shadow .3s var(--ease); }
+.blog-feature:hover { border-color: var(--cc-border-gold); box-shadow: var(--cc-shadow-hover); }
+.blog-feature-img { background: var(--cc-surface); position: relative; min-height: 320px; overflow: hidden; }
+.blog-feature-img .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--cc-faint); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; background: repeating-linear-gradient(135deg, var(--cc-surface), var(--cc-surface) 14px, var(--cc-deep) 14px, var(--cc-deep) 28px); }
+.blog-feature-img .badge { position: absolute; top: 1.2rem; left: 1.2rem; z-index: 2; background: var(--cc-gold); color: var(--cc-black); font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.4em 0.8em; border-radius: 2px; }
+.blog-feature-body { padding: clamp(2rem, 3vw, 3rem); display: flex; flex-direction: column; justify-content: center; background: var(--cc-card); }
+.blog-feature-body .cat { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cc-gold); margin-bottom: 1rem; }
+.blog-feature-body h3 { font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
+.blog-feature-body p { color: var(--cc-muted); font-size: 0.96rem; margin-bottom: 1.5rem; }
+.blog-feature-meta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--cc-faint); letter-spacing: 0.04em; display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.blog-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+.blog-card { display: flex; flex-direction: column; }
+.blog-card .cat { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cc-gold); margin-bottom: 0.9rem; }
+.blog-card h4 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; line-height: 1.25; margin-bottom: 0.7rem; }
+.blog-card p { color: var(--cc-muted); font-size: 0.9rem; margin-bottom: 1.2rem; flex: 1; }
+.blog-card .meta { font-family: var(--font-mono); font-size: 0.68rem; color: var(--cc-faint); letter-spacing: 0.04em; }
+
+/* Get Involved (tabbed) */
+.gi-head { text-align: center; max-width: 56ch; margin: 0 auto; }
+.gi-tabs-row { display: flex; justify-content: center; margin: 2.5rem 0; }
+.split { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
+.split-copy h2 { margin-bottom: 0; }
+.criteria { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.criteria li { display: flex; gap: 0.9rem; color: var(--cc-muted); font-size: 0.95rem; line-height: 1.5; }
+.criteria li::before { content: "✦"; color: var(--cc-gold); flex-shrink: 0; }
+.criteria li strong { color: var(--cc-white); font-weight: 500; }
+.form-panel { background: var(--cc-card); border: 1px solid var(--cc-border); border-radius: 4px; padding: clamp(1.8rem, 3vw, 2.6rem); box-shadow: var(--cc-shadow); }
+.checks { display: flex; flex-direction: column; gap: 0.85rem; margin-top: 0.5rem; }
+.roles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin-top: 2rem; }
+.role { border: 1px solid var(--cc-border); border-radius: 4px; padding: 1.1rem 1.2rem; transition: border-color .25s var(--ease), background .25s var(--ease); }
+.role:hover { border-color: var(--cc-border-gold); background: var(--cc-surface); }
+.role .r-name { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+.role .r-tag { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cc-gold); margin-top: 0.3rem; }
+.gi-anchor { position: absolute; top: -2rem; }
+
+@media (max-width: 980px) {
+  .about-bento { grid-template-columns: 1fr; }
+}
+@media (max-width: 880px) {
+  .split, .blog-feature { grid-template-columns: 1fr; }
+  .blog-cards, .about-pillars { grid-template-columns: 1fr; }
+  .blog-feature-img { min-height: 220px; }
+  .goals-bento .b-full .card { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .goals-bento .b-full .gf-left { max-width: 100%; }
+  .roles-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Cause <span>&amp;</span> Counsel</a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="events.html">Events</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#join" class="btn-gold">Apply to Join →</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html" class="active">Home</a>
+  <a href="events.html">Events</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="#join">Apply to Join →</a>
+  <div class="drawer-foot">Est. 2025 · JGU · New Delhi</div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero bg-black" data-screen-label="Home / Hero">
+  <div class="hero-glow"></div>
+  <div class="wrap hero-inner">
+    <p class="section-tag" style="margin-bottom: 1.8rem;">Legal literacy, for everyone</p>
+    <h1>The law belongs to <em>everyone.</em> We make it so.</h1>
+    <p class="hero-sub">A student-led, peer-reviewed initiative translating dense legislation and legalese into plain English — so that knowing your rights is never a privilege.</p>
+    <div class="hero-ctas">
+      <a href="blog.html" class="btn-gold">Read Our Work</a>
+      <a href="#about" class="btn-ghost">Our Mission ↓</a>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="wrap">
+      <span class="hero-est">Est. 2025 · JGU · New Delhi</span>
+      <span class="hero-scroll"><span class="bar"></span>Scroll</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="section-pad bg-deep" data-screen-label="Home / About">
+  <div class="wrap">
+    <div class="fade-in" style="max-width: 52ch; margin-bottom: 3rem;">
+      <p class="section-tag">The founding</p>
+      <div class="section-rule"></div>
+      <h2 class="section-heading">The law was never the problem. The <em>translation</em> was.</h2>
+    </div>
+    <div class="about-bento">
+      <div class="about-story fade-in">
+        <p class="about-quote"><span class="mark">“</span>I kept watching people sign things they didn't understand, forfeit rights they didn't know they had.<span class="mark">”</span></p>
+        <div class="about-body">
+          <p><strong>Cause &amp; Counsel</strong> began as a simple frustration. Legislation that governs ordinary life — tenancy, employment, consumer protection, fundamental rights — is written for those already fluent in it. Everyone else is left to guess.</p>
+          <p>Founded by <strong>Sanaya Parikh</strong>, a third-year student at Jindal Global Law School, the initiative branched from <strong>We Kids Care</strong>, her high-school project on civic awareness. The conviction carried over: knowledge of your rights should never depend on who you can afford to ask.</p>
+          <p>Today we are a peer-reviewed, India-focused collective writing the explainers we wish existed — rigorous enough for the classroom, clear enough for the kitchen table.</p>
+        </div>
+        <p class="about-sign">Sanaya Parikh <span>— Founder, JGLS '27</span></p>
+      </div>
+      <div class="about-pillars fade-in">
+        <div class="card card-accent">
+          <span class="card-num">01</span>
+          <h3 class="card-title">Research &amp; Writing</h3>
+          <p class="card-body">Peer-reviewed explainers that break legislation down to first principles.</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-num">02</span>
+          <h3 class="card-title">Rights Education</h3>
+          <p class="card-body">Plain-English guides to the rights people use every day.</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-num">03</span>
+          <h3 class="card-title">Community Outreach</h3>
+          <p class="card-body">Workshops that take legal literacy out of the lecture hall.</p>
+        </div>
+        <div class="card card-accent">
+          <span class="card-num">04</span>
+          <h3 class="card-title">Startup Support</h3>
+          <p class="card-body">Founder-friendly primers on the law that shapes a young company.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOALS (BENTO) ============ -->
+<section id="goals" class="section-pad bg-black" data-screen-label="Home / Goals">
+  <div class="wrap">
+    <div class="fade-in" style="max-width: 52ch;">
+      <p class="section-tag">What we're building</p>
+      <div class="section-rule"></div>
+      <h2 class="section-heading">Five ways we make the law <em>legible.</em></h2>
+    </div>
+    <div class="bento goals-bento fade-in">
+      <div class="card card-accent b-2x2">
+        <span class="card-num">✦ 01</span>
+        <h3 class="card-title">Legal Literacy</h3>
+        <p class="card-body">A growing library of explainers that turn statutes and judgments into language anyone can act on — the foundation everything else is built on. Each piece is sourced, peer-reviewed, and written to be used, not admired.</p>
+        <div class="spacer"></div>
+        <p class="feature-foot">The core of the project</p>
+      </div>
+      <div class="card card-accent b-2x1">
+        <span class="card-num">✦ 02</span>
+        <h3 class="card-title">Student Law Review</h3>
+        <p class="card-body">A peer-reviewed platform where law students publish accessible commentary and build their craft.</p>
+      </div>
+      <div class="card card-accent b-1x1">
+        <span class="card-num">✦ 03</span>
+        <h3 class="card-title">Community Workshops</h3>
+        <p class="card-body">Sessions that bring rights education directly to the people who need it.</p>
+      </div>
+      <div class="card card-accent b-1x1">
+        <span class="card-num">✦ 04</span>
+        <h3 class="card-title">Startup Legal Education</h3>
+        <p class="card-body">Incorporation, contracts, IP and compliance — without the jargon.</p>
+      </div>
+      <div class="card card-accent b-full">
+        <div class="gf-left">
+          <span class="card-num">✦ 05</span>
+          <h3 class="card-title">Seminars &amp; Speaker Series</h3>
+        </div>
+        <p class="gf-body">Conversations with practitioners, scholars and changemakers on the law's role in everyday life — open to students and the public alike, on campus and online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOG PREVIEW ============ -->
+<section id="writing" class="section-pad bg-surface" data-screen-label="Home / Blog preview">
+  <div class="wrap">
+    <div class="fade-in" style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem; margin-bottom: 3rem;">
+      <div style="max-width: 46ch;">
+        <p class="section-tag">From the desk</p>
+        <div class="section-rule"></div>
+        <h2 class="section-heading">Recent <em>writing.</em></h2>
+      </div>
+      <a href="blog.html" class="link-read">View all articles →</a>
+    </div>
+
+    <a href="blog-post.html?slug=companies-act-2013-founders-guide" class="blog-feature fade-in">
+      <div class="blog-feature-img">
+        <span class="badge">Featured</span>
+        <span class="ph">Article image</span>
+      </div>
+      <div class="blog-feature-body">
+        <span class="cat">Corporate &amp; Startup</span>
+        <h3>The Companies Act, 2013 — a founder's plain-English guide</h3>
+        <p>Incorporation, director duties, and the compliance calendar that trips up every first-time founder — decoded without a single footnote you have to look up.</p>
+        <div class="blog-feature-meta"><span>Sanaya Parikh</span><span>·</span><span>12 Jun 2026</span><span>·</span><span>9 min read</span></div>
+        <span class="link-read">Read article →</span>
+      </div>
+    </a>
+
+    <div class="blog-cards">
+      <a href="blog-post.html?slug=tenant-rights-india" class="card card-accent blog-card fade-in">
+        <span class="cat">Know Your Rights</span>
+        <h4>Your rights as a tenant in India, explained</h4>
+        <p>Security deposits, eviction notice periods, and what a landlord legally cannot do — the renting realities no one hands you with the keys.</p>
+        <span class="meta">Aarav Mehta · 8 Jun 2026 · 6 min read</span>
+      </a>
+      <a href="blog-post.html?slug=fir-criminal-procedure" class="card card-accent blog-card fade-in">
+        <span class="cat">Criminal Law</span>
+        <h4>What actually happens when you file an FIR</h4>
+        <p>From the police station to the magistrate — a step-by-step walk through the first hours of the criminal process, and your rights at each one.</p>
+        <span class="meta">Diya Sharma · 3 Jun 2026 · 7 min read</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NEWSLETTER BAND ============ -->
+<section id="newsletter" class="section-pad bg-deep" data-screen-label="Home / Newsletter">
+  <div class="wrap">
+    <div class="news-band fade-in">
+      <div class="nb-copy">
+        <p class="section-tag" style="margin-bottom: 1rem;">Stay informed</p>
+        <h2>The law, in your <em>inbox.</em></h2>
+        <p>One considered email when we publish something worth your time — new explainers and upcoming workshops. No noise, always free.</p>
+      </div>
+      <form class="news-form" data-cc-form data-cc-label="Newsletter signup" data-cc-success="You're on the list — welcome to Cause &amp; Counsel.">
+        <div class="field">
+          <label>First name <span class="req">✦</span></label>
+          <input type="text" name="first_name" placeholder="Your first name" required />
+        </div>
+        <div class="field">
+          <label>Email <span class="req">✦</span></label>
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field field-wide">
+          <label>What interests you most?</label>
+          <select name="interest">
+            <option value="">Choose one…</option>
+            <option>Know Your Rights</option>
+            <option>Constitutional Law</option>
+            <option>Corporate &amp; Startup</option>
+            <option>Criminal Law</option>
+            <option>Labour Law</option>
+            <option>Workshops &amp; Events</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-gold">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GET INVOLVED (TABBED) ============ -->
+<section id="join" class="section-pad bg-black" data-screen-label="Home / Get involved">
+  <span id="submit" class="gi-anchor"></span>
+  <div class="wrap">
+    <div class="gi-head fade-in">
+      <p class="section-tag" style="display:inline-block;">Get involved</p>
+      <div class="section-rule center"></div>
+      <h2 class="section-heading">Be part of the <em>work.</em></h2>
+      <p class="lede" style="margin: 1.3rem auto 0;">Write a peer-reviewed piece, or join the team building this. Pick your path.</p>
+    </div>
+
+    <div data-tabs>
+      <div class="gi-tabs-row fade-in">
+        <div class="tabs" role="tablist">
+          <button class="tab active" type="button" data-tab="write" data-tab-alias="submit writing">Write for us</button>
+          <button class="tab" type="button" data-tab="join" data-tab-alias="join apply">Join the team</button>
+        </div>
+      </div>
+
+      <!-- WRITE PANEL -->
+      <div class="tab-panel active" data-tab-panel="write">
+        <div class="split">
+          <div class="split-copy">
+            <p class="section-tag">Write with us</p>
+            <div class="section-rule"></div>
+            <h2 class="section-heading">Submit an <em>article.</em></h2>
+            <p class="lede" style="margin-top: 1.5rem;">We publish clear, rigorous writing from law students across India. Every piece is peer-reviewed. Here's what we look for.</p>
+            <ul class="criteria">
+              <li><strong>Plain English first.</strong> If a sixteen-year-old can't follow it, rewrite it.</li>
+              <li><strong>One idea, done well.</strong> A single statute, case, or right — explained completely.</li>
+              <li><strong>Cite your sources.</strong> Link the bare act, the judgment, the section.</li>
+              <li><strong>Original work only.</strong> No AI-generated drafts, no recycled coursework.</li>
+              <li><strong>India-focused.</strong> Grounded in Indian law and the lives it touches.</li>
+              <li><strong>800–2,000 words.</strong> Long enough to be useful, short enough to be read.</li>
+            </ul>
+          </div>
+          <form class="form-panel" data-cc-form data-cc-label="Article submission" data-cc-success="Submission received — our editors will be in touch.">
+            <div class="form-grid two">
+              <div class="field">
+                <label>First name <span class="req">✦</span></label>
+                <input type="text" name="first_name" required />
+              </div>
+              <div class="field">
+                <label>Last name <span class="req">✦</span></label>
+                <input type="text" name="last_name" required />
+              </div>
+            </div>
+            <div class="form-grid two" style="margin-top:1.25rem;">
+              <div class="field">
+                <label>Email <span class="req">✦</span></label>
+                <input type="email" name="email" required />
+              </div>
+              <div class="field">
+                <label>Institution</label>
+                <input type="text" name="institution" placeholder="Your law school" />
+              </div>
+            </div>
+            <div class="field" style="margin-top:1.25rem;">
+              <label>Proposed title <span class="req">✦</span></label>
+              <input type="text" name="title" placeholder="The working title of your piece" required />
+            </div>
+            <div class="form-grid two" style="margin-top:1.25rem;">
+              <div class="field">
+                <label>Category</label>
+                <select name="category">
+                  <option value="">Choose…</option>
+                  <option>Know Your Rights</option>
+                  <option>Constitutional Law</option>
+                  <option>Corporate &amp; Startup</option>
+                  <option>Criminal Law</option>
+                  <option>Labour Law</option>
+                  <option>Case Analyses</option>
+                  <option>Legislative Commentary</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>Word count</label>
+                <input type="number" name="word_count" placeholder="≈ 1200" min="0" />
+              </div>
+            </div>
+            <div class="field" style="margin-top:1.25rem;">
+              <label>Abstract <span class="req">✦</span></label>
+              <textarea name="abstract" placeholder="In 2–4 sentences, what does your piece explain and why does it matter?" required></textarea>
+            </div>
+            <div class="checks">
+              <label class="check"><input type="checkbox" name="original" required /><span>This is my original, unpublished work.</span></label>
+              <label class="check"><input type="checkbox" name="review" required /><span>I understand the piece will be peer-reviewed and may be edited.</span></label>
+              <label class="check"><input type="checkbox" name="rights" required /><span>I grant Cause &amp; Counsel a non-exclusive licence to publish it.</span></label>
+            </div>
+            <button type="submit" class="btn-gold" style="margin-top: 1.5rem; justify-content:center; width:100%;">Submit for Review</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- JOIN PANEL -->
+      <div class="tab-panel" data-tab-panel="join">
+        <div class="split">
+          <div class="split-copy">
+            <p class="section-tag">Join the team</p>
+            <div class="section-rule"></div>
+            <h2 class="section-heading">Build this <em>with us.</em></h2>
+            <p class="lede" style="margin-top: 1.5rem;">We're a small, ambitious team of students. If you write well, organise well, or just care a great deal about access to justice — there's a place for you.</p>
+            <div class="roles-grid">
+              <div class="role"><div class="r-name">Research Lead</div><div class="r-tag">✦ Writing</div></div>
+              <div class="role"><div class="r-name">Content Lead</div><div class="r-tag">✦ Editorial</div></div>
+              <div class="role"><div class="r-name">Outreach &amp; Partnerships</div><div class="r-tag">✦ Community</div></div>
+              <div class="role"><div class="r-name">Design &amp; Social</div><div class="r-tag">✦ Brand</div></div>
+              <div class="role"><div class="r-name">Events &amp; Seminars</div><div class="r-tag">✦ Programming</div></div>
+              <div class="role"><div class="r-name">Editorial Review</div><div class="r-tag">✦ Peer review</div></div>
+            </div>
+          </div>
+          <form class="form-panel" data-cc-form data-cc-label="Team application" data-cc-success="Application received — thank you for wanting to build this with us.">
+            <div class="form-grid two">
+              <div class="field">
+                <label>Full name <span class="req">✦</span></label>
+                <input type="text" name="name" required />
+              </div>
+              <div class="field">
+                <label>Year of study</label>
+                <input type="text" name="year" placeholder="e.g. 2nd year" />
+              </div>
+            </div>
+            <div class="form-grid two" style="margin-top:1.25rem;">
+              <div class="field">
+                <label>Email <span class="req">✦</span></label>
+                <input type="email" name="email" required />
+              </div>
+              <div class="field">
+                <label>Institution</label>
+                <input type="text" name="institution" />
+              </div>
+            </div>
+            <div class="field" style="margin-top:1.25rem;">
+              <label>Role you're applying for <span class="req">✦</span></label>
+              <select name="role" required>
+                <option value="">Choose a role…</option>
+                <option>Research Lead</option>
+                <option>Content Lead</option>
+                <option>Outreach &amp; Partnerships</option>
+                <option>Design &amp; Social</option>
+                <option>Events &amp; Seminars</option>
+                <option>Editorial Review</option>
+              </select>
+            </div>
+            <div class="field" style="margin-top:1.25rem;">
+              <label>Why Cause &amp; Counsel? <span class="req">✦</span></label>
+              <textarea name="why" maxlength="2200" placeholder="In about 350 words — what draws you to this work?" required></textarea>
+            </div>
+            <div class="field" style="margin-top:1.25rem;">
+              <label>A legal topic you'd love to demystify</label>
+              <input type="text" name="topic" placeholder="e.g. gig-worker protections" />
+            </div>
+            <button type="submit" class="btn-gold" style="margin-top: 1.5rem; justify-content:center; width:100%;">Submit Application</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Cause <span>&amp;</span> Counsel</div>
+        <p>Bridging the gap between complex legal language and everyday people. Student-led, peer-reviewed, India-focused.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="blog.html">Blog</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get involved</h4>
+          <a href="#submit">Submit an article</a>
+          <a href="#join">Join the team</a>
+          <a href="#newsletter">Newsletter</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="contact.html">Get in touch →</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span data-year>2026</span> Cause &amp; Counsel · Est. 2025 · JGU, New Delhi</p>
+      <p>Made by students, for everyone ✦</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

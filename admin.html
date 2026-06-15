@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Admin — Cause &amp; Counsel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/global.css" />
+<script>(function(){try{var t=localStorage.getItem('cc-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}document.documentElement.classList.add('js');})();</script>
+<style>
+body { background: var(--cc-black); }
+/* ---- LOCK SCREEN ---- */
+.lock { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.lock-card { width: 100%; max-width: 420px; background: var(--cc-card); border: 1px solid var(--cc-border); border-radius: 6px; padding: clamp(2rem, 5vw, 3rem); text-align: center; }
+.lock-logo { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.4rem; }
+.lock-logo span { color: var(--cc-gold); }
+.lock-card .section-tag { display: inline-block; margin-bottom: 2rem; }
+.lock-card h1 { font-family: var(--font-display); font-size: 1.8rem; font-weight: 600; margin-bottom: 0.6rem; }
+.lock-card .sub { color: var(--cc-muted); font-size: 0.92rem; margin-bottom: 2rem; }
+.lock-form { display: flex; flex-direction: column; gap: 1rem; }
+.lock-form input { text-align: center; letter-spacing: 0.2em; font-family: var(--font-mono); }
+.lock-error { color: #E0686B; font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.04em; min-height: 1.2em; transition: opacity .2s; opacity: 0; }
+.lock-error.show { opacity: 1; }
+.lock-hint { margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; color: var(--cc-faint); line-height: 1.6; }
+.lock-shake { animation: shake .4s; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%,60%{transform:translateX(-7px)} 40%,80%{transform:translateX(7px)} }
+
+/* ---- DASHBOARD ---- */
+.dash { display: none; }
+.dash.show { display: block; }
+.dash-bar { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.1rem 2rem; background: var(--cc-nav-scrolled); backdrop-filter: blur(18px); border-bottom: 1px solid var(--cc-border); flex-wrap: wrap; }
+.dash-bar .logo { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; white-space: nowrap; }
+.dash-bar .logo span { color: var(--cc-gold); }
+.dash-bar .right { display: flex; align-items: center; gap: 1.2rem; }
+.dash-bar .status { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cc-muted); display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
+.dash-bar .status .dotmark { width: 7px; height: 7px; border-radius: 50%; background: #6FCF97; box-shadow: 0 0 8px #6FCF97; }
+.dash-bar button.signout { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cc-muted); border: 1px solid var(--cc-border); border-radius: 999px; padding: 0.5em 1.1em; transition: all .2s var(--ease); }
+.dash-bar button.signout:hover { border-color: var(--cc-border-gold); color: var(--cc-gold); }
+
+.dash-body { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+.dash-h { font-family: var(--font-display); font-size: clamp(2rem,4vw,2.8rem); font-weight: 600; margin-bottom: 0.4rem; }
+.dash-h em { font-style: italic; color: var(--cc-gold); }
+.dash-sub { color: var(--cc-muted); margin-bottom: 2.5rem; }
+
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap: 1rem; margin-bottom: 3rem; }
+.stat { background: var(--cc-card); border: 1px solid var(--cc-border); border-radius: 4px; padding: 1.6rem; }
+.stat .s-num { font-family: var(--font-display); font-size: 2.6rem; font-weight: 600; color: var(--cc-gold); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat .s-lbl { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cc-muted); margin-top: 0.8rem; }
+.stat .s-sub { font-size: 0.8rem; color: var(--cc-faint); margin-top: 0.3rem; }
+
+.panel { background: var(--cc-card); border: 1px solid var(--cc-border); border-radius: 4px; margin-bottom: 1.5rem; overflow: hidden; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--cc-border); flex-wrap: wrap; }
+.panel-head h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; }
+.panel-head .count { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cc-gold); border: 1px solid var(--cc-border-gold); border-radius: 999px; padding: 0.35em 0.8em; white-space: nowrap; }
+.tbl-scroll { overflow-x: auto; }
+table.tbl { width: 100%; border-collapse: collapse; min-width: 560px; }
+table.tbl th { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cc-faint); text-align: left; padding: 0.9rem 1.5rem; border-bottom: 1px solid var(--cc-border); white-space: nowrap; }
+table.tbl td { font-size: 0.88rem; color: var(--cc-white); padding: 1rem 1.5rem; border-bottom: 1px solid var(--cc-border); vertical-align: top; }
+table.tbl tr:last-child td { border-bottom: none; }
+table.tbl td .muted { color: var(--cc-muted); font-size: 0.82rem; }
+table.tbl td .mono { font-family: var(--font-mono); font-size: 0.78rem; color: var(--cc-muted); }
+.pill { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3em 0.7em; border-radius: 999px; white-space: nowrap; }
+.pill.pending { color: var(--cc-gold); border: 1px solid var(--cc-border-gold); }
+.pill.review { color: #7FB4E8; border: 1px solid rgba(127,180,232,0.35); }
+
+.links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1rem; }
+.link-tile { display: block; background: var(--cc-card); border: 1px solid var(--cc-border); border-radius: 4px; padding: 1.4rem; transition: border-color .2s var(--ease), transform .2s var(--ease); }
+.link-tile:hover { border-color: var(--cc-border-gold); transform: translateY(-2px); }
+.link-tile .lt-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cc-gold); }
+.link-tile .lt-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin: 0.5rem 0 0.3rem; }
+.link-tile .lt-desc { font-size: 0.82rem; color: var(--cc-muted); }
+
+.dash-section-tag { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cc-faint); margin: 2.5rem 0 1.2rem; }
+
+.copy-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.copy-row { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; background: var(--cc-card); border: 1px solid var(--cc-border); border-radius: 4px; }
+.copy-row .cr-name { font-family: var(--font-display); font-size: 1rem; min-width: 120px; }
+.copy-row .cr-url { font-family: var(--font-mono); font-size: 0.76rem; color: var(--cc-muted); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.copy-row button { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cc-muted); border: 1px solid var(--cc-border); border-radius: 999px; padding: 0.45em 0.9em; transition: all .2s var(--ease); white-space: nowrap; }
+.copy-row button:hover { border-color: var(--cc-border-gold); color: var(--cc-gold); }
+
+.demo-note { margin-top: 2rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.03em; color: var(--cc-faint); line-height: 1.7; border-left: 2px solid var(--cc-border-gold); padding-left: 1rem; }
+</style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div class="lock" id="lock">
+  <div class="lock-card" id="lock-card">
+    <div class="lock-logo">Cause <span>&amp;</span> Counsel</div>
+    <p class="section-tag">Team access</p>
+    <h1>Admin</h1>
+    <p class="sub">Enter the team passphrase to continue.</p>
+    <form class="lock-form" id="lock-form">
+      <input type="password" id="passphrase" placeholder="• • • • • • • •" autocomplete="current-password" aria-label="Passphrase" />
+      <div class="lock-error" id="lock-error">Incorrect passphrase. Try again.</div>
+      <button type="submit" class="btn-gold" style="justify-content:center;">Unlock Dashboard</button>
+    </form>
+    <p class="lock-hint">✦ Access is passphrase-only and stays in this tab until you close it. Change the passphrase by updating its SHA-256 hash in <code style="color:var(--cc-muted)">js/admin.js</code>.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dash" id="dash">
+  <div class="dash-bar">
+    <div class="logo">Cause <span>&amp;</span> Counsel</div>
+    <div class="right">
+      <span class="status"><span class="dotmark"></span> Signed in</span>
+      <button class="signout" id="signout">Sign out</button>
+    </div>
+  </div>
+
+  <div class="dash-body">
+    <h1 class="dash-h">Team <em>dashboard.</em></h1>
+    <p class="dash-sub">Submissions, content sources, and quick links — everything the team needs in one place.</p>
+
+    <!-- STATS -->
+    <div class="stat-row">
+      <div class="stat"><div class="s-num" id="stat-subs">0</div><div class="s-lbl">Newsletter subscribers</div><div class="s-sub" id="stat-subs-sub">total signups</div></div>
+      <div class="stat"><div class="s-num" id="stat-articles">0</div><div class="s-lbl">Article submissions</div><div class="s-sub">awaiting review</div></div>
+      <div class="stat"><div class="s-num" id="stat-joins">0</div><div class="s-lbl">Join applications</div><div class="s-sub">pending</div></div>
+    </div>
+
+    <!-- ARTICLE SUBMISSIONS -->
+    <div class="panel">
+      <div class="panel-head">
+        <h3>Article submission queue</h3>
+        <span class="count" id="count-articles">0 pending</span>
+      </div>
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <thead><tr><th>Title</th><th>Author</th><th>Category</th><th>Submitted</th><th>Status</th></tr></thead>
+          <tbody id="tbl-articles"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- JOIN APPLICATIONS -->
+    <div class="panel">
+      <div class="panel-head">
+        <h3>Join applications</h3>
+        <span class="count" id="count-joins">0 pending</span>
+      </div>
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Role</th><th>Institution</th><th>Applied</th><th>Status</th></tr></thead>
+          <tbody id="tbl-joins"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NEWSLETTER -->
+    <div class="panel">
+      <div class="panel-head">
+        <h3>Recent newsletter subscribers</h3>
+        <span class="count" id="count-subs">0 total</span>
+      </div>
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <thead><tr><th>Name</th><th>Email</th><th>Interest</th><th>Joined</th></tr></thead>
+          <tbody id="tbl-subs"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MANAGE CONTENT -->
+    <p class="dash-section-tag">Manage content</p>
+    <div class="links-grid">
+      <a class="link-tile" href="https://calendar.google.com" target="_blank" rel="noopener">
+        <div class="lt-label">✦ Google Calendar</div>
+        <div class="lt-title">Manage events →</div>
+        <div class="lt-desc">Add or edit events — they sync to the Events page automatically.</div>
+      </a>
+      <a class="link-tile" href="https://notion.so" target="_blank" rel="noopener">
+        <div class="lt-label">✦ Notion</div>
+        <div class="lt-title">Manage blog posts →</div>
+        <div class="lt-desc">Write articles and flip Status to Published to go live.</div>
+      </a>
+      <a class="link-tile" href="https://formspree.io" target="_blank" rel="noopener">
+        <div class="lt-label">✦ Formspree</div>
+        <div class="lt-title">View form inbox →</div>
+        <div class="lt-desc">Raw submissions for every form across the site.</div>
+      </a>
+    </div>
+
+    <!-- QUICK LINKS -->
+    <p class="dash-section-tag">Live pages — quick copy</p>
+    <div class="copy-list" id="copy-list"></div>
+
+    <p class="demo-note" id="demo-note"></p>
+  </div>
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>

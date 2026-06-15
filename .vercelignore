@@ -1,0 +1,10 @@
+# Never upload local secrets or cruft to Vercel.
+# Real values are set in the Vercel dashboard (Environment Variables),
+# not read from these files.
+.env
+.env.local
+.env.*.local
+.DS_Store
+.thumbnail
+screenshots/
+*.log

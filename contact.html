@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Cause &amp; Counsel</title>
+<meta name="description" content="Get in touch with Cause &amp; Counsel — general enquiries, media, partnerships, and feedback." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/global.css" />
+<script>(function(){try{var t=localStorage.getItem('cc-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}document.documentElement.classList.add('js');})();</script>
+<style>
+.contact-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
+.contact-side .channel { display: block; border-top: 1px solid var(--cc-border); padding: 1.5rem 0; transition: border-color .25s var(--ease); }
+.contact-side .channel:last-of-type { border-bottom: 1px solid var(--cc-border); }
+.contact-side .channel:hover { border-color: var(--cc-border-gold); }
+.contact-side .channel .c-label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cc-faint); }
+.contact-side .channel .c-value { font-family: var(--font-display); font-size: 1.3rem; color: var(--cc-white); margin-top: 0.4rem; transition: color .22s var(--ease); }
+.contact-side .channel:hover .c-value { color: var(--cc-gold); }
+.contact-side .channel .c-note { font-size: 0.85rem; color: var(--cc-muted); margin-top: 0.3rem; }
+
+.submit-cta { margin-top: 2.5rem; background: var(--cc-card); border: 1px solid var(--cc-border-gold); border-radius: 4px; padding: 2rem; }
+.submit-cta h3 { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; margin-bottom: 0.6rem; }
+.submit-cta p { color: var(--cc-muted); font-size: 0.92rem; margin-bottom: 1.4rem; }
+
+@media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Cause <span>&amp;</span> Counsel</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="index.html#join" class="btn-gold">Apply to Join →</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="events.html">Events</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html" class="active">Contact</a>
+  <a href="index.html#join">Apply to Join →</a>
+  <div class="drawer-foot">Est. 2025 · JGU · New Delhi</div>
+</div>
+
+<header class="page-hero bg-black" data-screen-label="Contact / Hero">
+  <div class="wrap">
+    <p class="section-tag fade-in">Say hello</p>
+    <div class="section-rule fade-in"></div>
+    <h1 class="section-heading fade-in">Get in <em>touch.</em></h1>
+    <p class="lede fade-in" style="margin-top: 1.8rem; max-width: 52ch;">Questions, story tips, partnership ideas, or just want to tell us we got something wrong? We read everything.</p>
+  </div>
+</header>
+
+<section class="section-pad bg-deep" data-screen-label="Contact / Form">
+  <div class="wrap">
+    <div class="contact-grid">
+      <!-- FORM -->
+      <form class="form-panel fade-in" data-cc-form data-cc-label="Contact message" data-cc-success="Thank you — we'll be in touch soon.">
+        <div class="field">
+          <label>Name <span class="req">✦</span></label>
+          <input type="text" name="name" placeholder="Your name" required />
+        </div>
+        <div class="field" style="margin-top:1.25rem;">
+          <label>Email <span class="req">✦</span></label>
+          <input type="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field" style="margin-top:1.25rem;">
+          <label>Subject</label>
+          <select name="subject">
+            <option value="">Choose a topic…</option>
+            <option>General enquiry</option>
+            <option>Media &amp; press</option>
+            <option>Partnership</option>
+            <option>Feedback</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field" style="margin-top:1.25rem;">
+          <label>Message <span class="req">✦</span></label>
+          <textarea name="message" placeholder="Tell us what's on your mind…" required></textarea>
+        </div>
+        <button type="submit" class="btn-gold" style="margin-top: 1.5rem; justify-content:center; width:100%;">Send Message</button>
+      </form>
+
+      <!-- DIRECT INFO -->
+      <div class="contact-side fade-in">
+        <p class="section-tag">Direct lines</p>
+        <div class="section-rule"></div>
+        <a class="channel" href="mailto:contact@causeandcounsel.in">
+          <div class="c-label">✦ Email</div>
+          <div class="c-value">contact@causeandcounsel.in</div>
+          <div class="c-note">The fastest way to reach the team.</div>
+        </a>
+        <a class="channel" href="https://instagram.com" target="_blank" rel="noopener">
+          <div class="c-label">✦ Instagram</div>
+          <div class="c-value">@causeandcounsel</div>
+          <div class="c-note">Explainers, threads, and event updates.</div>
+        </a>
+        <a class="channel" href="https://linkedin.com" target="_blank" rel="noopener">
+          <div class="c-label">✦ LinkedIn</div>
+          <div class="c-value">Cause &amp; Counsel</div>
+          <div class="c-note">For partnerships and professional enquiries.</div>
+        </a>
+
+        <div class="submit-cta">
+          <h3>Want to write for us?</h3>
+          <p>We publish peer-reviewed, plain-English legal writing from students across India. Pitches go through our submission form.</p>
+          <a href="index.html#submit" class="btn-ghost" style="width:100%; justify-content:center;">Submit an Article →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Cause <span>&amp;</span> Counsel</div>
+        <p>Bridging the gap between complex legal language and everyday people. Student-led, peer-reviewed, India-focused.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="blog.html">Blog</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get involved</h4>
+          <a href="index.html#submit">Submit an article</a>
+          <a href="index.html#join">Join the team</a>
+          <a href="index.html#newsletter">Newsletter</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:contact@causeandcounsel.in">contact@causeandcounsel.in</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">@causeandcounsel</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span data-year>2026</span> Cause &amp; Counsel · Est. 2025 · JGU, New Delhi</p>
+      <p>Made by students, for everyone ✦</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Events — Cause &amp; Counsel</title>
+<meta name="description" content="Upcoming workshops, seminars, and speaker events from Cause &amp; Counsel." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/global.css" />
+<script>(function(){try{var t=localStorage.getItem('cc-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}document.documentElement.classList.add('js');})();</script>
+<style>
+.events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1rem; }
+.event-card { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; }
+.event-date { text-align: center; min-width: 64px; }
+.event-date .d-day { font-family: var(--font-mono); font-size: 2.2rem; font-weight: 500; color: var(--cc-gold); line-height: 1; }
+.event-date .d-mon { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cc-gold); margin-top: 0.35rem; }
+.event-date .d-yr { font-family: var(--font-mono); font-size: 0.66rem; color: var(--cc-faint); margin-top: 0.5rem; }
+.event-date .d-wk { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cc-faint); margin-top: 0.2rem; }
+.event-main h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; line-height: 1.25; margin-bottom: 0.7rem; }
+.event-meta { display: flex; flex-direction: column; gap: 0.3rem; margin-bottom: 0.9rem; }
+.event-meta span { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.04em; color: var(--cc-muted); display: flex; align-items: center; gap: 0.5rem; }
+.event-meta span .ic { color: var(--cc-gold); }
+.event-desc { font-size: 0.9rem; color: var(--cc-muted); line-height: 1.6; margin-bottom: 1.2rem; }
+.event-tag { display: inline-block; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cc-black); background: var(--cc-gold); padding: 0.3em 0.7em; border-radius: 2px; margin-bottom: 0.9rem; }
+.event-tag.online { background: transparent; color: var(--cc-gold); border: 1px solid var(--cc-border-gold); }
+
+/* Skeleton */
+.skel-card { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; }
+.skel-date { width: 64px; height: 88px; }
+.skel-lines { display: flex; flex-direction: column; gap: 0.7rem; }
+.skel-line { height: 14px; border-radius: 3px; }
+
+/* Empty state */
+.empty-state { text-align: center; padding: 4rem 2rem; border: 1px dashed var(--cc-border); border-radius: 6px; }
+.empty-state .star { font-size: 1.8rem; color: var(--cc-gold); }
+.empty-state h3 { font-family: var(--font-display); font-size: 1.6rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+.empty-state p { color: var(--cc-muted); }
+
+/* Past events */
+.past-toggle { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1.5rem 0; border-top: 1px solid var(--cc-border); font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cc-muted); transition: color .22s var(--ease); }
+.past-toggle:hover { color: var(--cc-gold); }
+.past-toggle .chev { margin-left: auto; transition: transform .3s var(--ease); color: var(--cc-gold); }
+.past-toggle.open .chev { transform: rotate(180deg); }
+.past-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s var(--ease); }
+.past-wrap.open { grid-template-rows: 1fr; }
+.past-inner { overflow: hidden; }
+.past-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1rem; padding: 1.5rem 0 0.5rem; }
+.past-grid .event-card { opacity: 0.5; transition: opacity .25s var(--ease); }
+.past-grid .event-card:hover { opacity: 0.85; }
+.past-grid .event-date .d-day, .past-grid .event-date .d-mon { color: var(--cc-muted); }
+
+.data-note { margin-top: 2.5rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--cc-faint); display: flex; align-items: center; gap: 0.6rem; }
+
+@media (max-width: 560px) { .event-card { grid-template-columns: 1fr; gap: 0.8rem; } .event-date { text-align: left; display: flex; align-items: baseline; gap: 0.6rem; } .event-date .d-mon, .event-date .d-yr, .event-date .d-wk { margin-top: 0; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Cause <span>&amp;</span> Counsel</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="events.html" class="active">Events</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="index.html#join" class="btn-gold">Apply to Join →</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="events.html" class="active">Events</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="index.html#join">Apply to Join →</a>
+  <div class="drawer-foot">Est. 2025 · JGU · New Delhi</div>
+</div>
+
+<header class="page-hero bg-black" data-screen-label="Events / Hero">
+  <div class="wrap">
+    <p class="section-tag fade-in">What's on</p>
+    <div class="section-rule fade-in"></div>
+    <h1 class="section-heading fade-in">Join us in the <em>conversation.</em></h1>
+    <p class="lede fade-in" style="margin-top: 1.8rem; max-width: 54ch;">Workshops, seminars, and speaker events that bring legal literacy out of the textbook and into the room. Free, open, and worth your evening.</p>
+  </div>
+</header>
+
+<section class="section-pad bg-deep" data-screen-label="Events / List">
+  <div class="wrap">
+    <!-- Upcoming -->
+    <div id="events-root">
+      <!-- Skeleton (shown while loading) -->
+      <div id="events-skeleton" class="events-grid">
+        <div class="card skel-card"><div class="skeleton skel-date"></div><div class="skel-lines"><div class="skeleton skel-line" style="width:80%"></div><div class="skeleton skel-line" style="width:55%"></div><div class="skeleton skel-line" style="width:95%"></div><div class="skeleton skel-line" style="width:70%"></div></div></div>
+        <div class="card skel-card"><div class="skeleton skel-date"></div><div class="skel-lines"><div class="skeleton skel-line" style="width:75%"></div><div class="skeleton skel-line" style="width:50%"></div><div class="skeleton skel-line" style="width:90%"></div><div class="skeleton skel-line" style="width:65%"></div></div></div>
+        <div class="card skel-card"><div class="skeleton skel-date"></div><div class="skel-lines"><div class="skeleton skel-line" style="width:85%"></div><div class="skeleton skel-line" style="width:45%"></div><div class="skeleton skel-line" style="width:92%"></div><div class="skeleton skel-line" style="width:60%"></div></div></div>
+      </div>
+      <!-- Upcoming events injected here -->
+      <div id="events-upcoming" class="events-grid" hidden></div>
+      <!-- Empty state -->
+      <div id="events-empty" class="empty-state" hidden>
+        <div class="star">✦</div>
+        <h3>No upcoming events</h3>
+        <p>Nothing on the calendar just yet — check back soon, or follow us on Instagram for the first word.</p>
+      </div>
+    </div>
+
+    <!-- Past events -->
+    <div id="past-section" style="margin-top: 3.5rem;" hidden>
+      <button class="past-toggle" id="past-toggle" aria-expanded="false">
+        <span>Past events</span>
+        <span id="past-count" style="color: var(--cc-faint);"></span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="past-wrap" id="past-wrap">
+        <div class="past-inner">
+          <div id="events-past" class="past-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="data-note"><span style="color:var(--cc-gold)">✦</span> <span id="data-source">Events sync live from Google Calendar.</span></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Cause <span>&amp;</span> Counsel</div>
+        <p>Bridging the gap between complex legal language and everyday people. Student-led, peer-reviewed, India-focused.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="blog.html">Blog</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get involved</h4>
+          <a href="index.html#submit">Submit an article</a>
+          <a href="index.html#join">Join the team</a>
+          <a href="index.html#newsletter">Newsletter</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:contact@causeandcounsel.in">contact@causeandcounsel.in</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">@causeandcounsel</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span data-year>2026</span> Cause &amp; Counsel · Est. 2025 · JGU, New Delhi</p>
+      <p>Made by students, for everyone ✦</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/events.js"></script>
+</body>
+</html>

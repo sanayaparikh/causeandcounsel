@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Cause &amp; Counsel</title>
+<meta name="description" content="Plain-English legal explainers, case analyses, and commentary from Cause &amp; Counsel." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles/global.css" />
+<script>(function(){try{var t=localStorage.getItem('cc-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}document.documentElement.classList.add('js');})();</script>
+<style>
+.filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 3rem; }
+.filter-pill { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cc-muted); background: transparent; border: 1px solid var(--cc-border); border-radius: 999px; padding: 0.6em 1.1em; transition: all .22s var(--ease); white-space: nowrap; }
+.filter-pill:hover { border-color: var(--cc-border-gold); color: var(--cc-white); }
+.filter-pill.active { background: var(--cc-gold); border-color: var(--cc-gold); color: var(--cc-black); }
+
+/* Featured */
+.feature { display: grid; grid-template-columns: 1.1fr 1fr; gap: 0; border: 1px solid var(--cc-border); border-radius: 4px; overflow: hidden; transition: border-color .3s var(--ease); margin-bottom: 3rem; }
+.feature:hover { border-color: var(--cc-border-gold); }
+.feature-img { background: var(--cc-surface); position: relative; min-height: 340px; }
+.feature-img .ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--cc-faint); font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; background: repeating-linear-gradient(135deg, var(--cc-surface), var(--cc-surface) 14px, var(--cc-deep) 14px, var(--cc-deep) 28px); }
+.feature-img .badge { position: absolute; top: 1.2rem; left: 1.2rem; background: var(--cc-gold); color: var(--cc-black); font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.4em 0.8em; border-radius: 2px; }
+.feature-body { padding: clamp(2rem, 3vw, 3rem); display: flex; flex-direction: column; justify-content: center; background: var(--cc-card); }
+.feature-body .cat { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cc-gold); margin-bottom: 1rem; }
+.feature-body h2 { font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2.1rem); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
+.feature-body p { color: var(--cc-muted); font-size: 0.96rem; margin-bottom: 1.5rem; }
+.feature-meta { font-family: var(--font-mono); font-size: 0.72rem; color: var(--cc-faint); display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+/* Grid */
+.post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; }
+.post-card { display: flex; flex-direction: column; }
+.post-card .cat { font-family: var(--font-mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cc-gold); margin-bottom: 0.9rem; }
+.post-card h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; line-height: 1.25; margin-bottom: 0.7rem; }
+.post-card p { color: var(--cc-muted); font-size: 0.9rem; margin-bottom: 1.3rem; flex: 1; line-height: 1.6; }
+.post-card .meta { font-family: var(--font-mono); font-size: 0.66rem; color: var(--cc-faint); letter-spacing: 0.03em; display: flex; gap: 0.6rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--cc-border); }
+
+/* Skeleton */
+.sk-card { height: 280px; }
+
+.load-more-wrap { text-align: center; margin-top: 3rem; }
+.no-results { text-align: center; padding: 4rem 2rem; color: var(--cc-muted); }
+.no-results .star { font-size: 1.6rem; color: var(--cc-gold); display: block; margin-bottom: 1rem; }
+.data-note { margin-top: 2.5rem; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.04em; color: var(--cc-faint); display: flex; align-items: center; gap: 0.6rem; }
+
+@media (max-width: 760px) { .feature { grid-template-columns: 1fr; } .feature-img { min-height: 200px; } }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Cause <span>&amp;</span> Counsel</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="events.html">Events</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="index.html#join" class="btn-gold">Apply to Join →</a>
+      <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-drawer">
+  <a href="index.html">Home</a>
+  <a href="events.html">Events</a>
+  <a href="blog.html" class="active">Blog</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+  <a href="index.html#join">Apply to Join →</a>
+  <div class="drawer-foot">Est. 2025 · JGU · New Delhi</div>
+</div>
+
+<header class="page-hero bg-black" data-screen-label="Blog / Hero">
+  <div class="wrap">
+    <p class="section-tag fade-in">Knowledge base</p>
+    <div class="section-rule fade-in"></div>
+    <h1 class="section-heading fade-in">Legal clarity, <em>delivered.</em></h1>
+    <p class="lede fade-in" style="margin-top: 1.8rem; max-width: 54ch;">Explainers, case analyses, and commentary — each one peer-reviewed, sourced, and written so you finish it knowing exactly where you stand.</p>
+  </div>
+</header>
+
+<section class="section-pad bg-deep" data-screen-label="Blog / List">
+  <div class="wrap">
+    <!-- Filter bar -->
+    <div class="filter-bar fade-in" id="filter-bar">
+      <button class="filter-pill active" data-cat="All">All</button>
+      <button class="filter-pill" data-cat="Know Your Rights">Know Your Rights</button>
+      <button class="filter-pill" data-cat="Constitutional Law">Constitutional Law</button>
+      <button class="filter-pill" data-cat="Corporate & Startup">Corporate &amp; Startup</button>
+      <button class="filter-pill" data-cat="Criminal Law">Criminal Law</button>
+      <button class="filter-pill" data-cat="Labour Law">Labour Law</button>
+      <button class="filter-pill" data-cat="Case Analyses">Case Analyses</button>
+      <button class="filter-pill" data-cat="Legislative Commentary">Legislative Commentary</button>
+    </div>
+
+    <!-- Featured -->
+    <div id="featured-slot"></div>
+
+    <!-- Loading skeleton -->
+    <div id="blog-skeleton" class="post-grid">
+      <div class="card skeleton sk-card"></div>
+      <div class="card skeleton sk-card"></div>
+      <div class="card skeleton sk-card"></div>
+      <div class="card skeleton sk-card"></div>
+      <div class="card skeleton sk-card"></div>
+      <div class="card skeleton sk-card"></div>
+    </div>
+
+    <!-- Grid -->
+    <div id="post-grid" class="post-grid" hidden></div>
+
+    <!-- No results -->
+    <div id="no-results" class="no-results" hidden>
+      <span class="star">✦</span>
+      Nothing in this category yet. Try another, or check back soon.
+    </div>
+
+    <div class="load-more-wrap" id="load-more-wrap" hidden>
+      <button class="btn-ghost" id="load-more">Load More Articles</button>
+    </div>
+
+    <p class="data-note"><span style="color:var(--cc-gold)">✦</span> <span id="data-source">Posts publish straight from Notion.</span></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">Cause <span>&amp;</span> Counsel</div>
+        <p>Bridging the gap between complex legal language and everyday people. Student-led, peer-reviewed, India-focused.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="blog.html">Blog</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get involved</h4>
+          <a href="index.html#submit">Submit an article</a>
+          <a href="index.html#join">Join the team</a>
+          <a href="index.html#newsletter">Newsletter</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:contact@causeandcounsel.in">contact@causeandcounsel.in</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener">@causeandcounsel</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span data-year>2026</span> Cause &amp; Counsel · Est. 2025 · JGU, New Delhi</p>
+      <p>Made by students, for everyone ✦</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/mock-content.js"></script>
+<script src="js/main.js"></script>
+<script src="js/blog.js"></script>
+</body>
+</html>
